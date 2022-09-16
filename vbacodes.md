@@ -93,3 +93,13 @@
        If fltRow > 1 Then
             fltRowno = ActiveSheet.AutoFilter.Range.Offset(1).SpecialCells(xlCellTypeVisible).Row '## count first filter row number     
        End If
+
+# Create a Working Sheet
+            If ActiveSheet.FilterMode Then ActiveSheet.AutoFilterMode = False 
+            Sheets.Add After:=Worksheets("Prior Month")
+            ActiveSheet.Name = "Working" '## Create a Working Sheet 
+            For Each ws In Worksheets
+                If ws.Name Like "* Use Tax Review" Then 
+                
+                End If
+            Next ws
