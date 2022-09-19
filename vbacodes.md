@@ -1,4 +1,4 @@
-# Case statement 
+# Case Statement 
 
     YesNo = MsgBox("Have you logged in for respective SAP bottler..?" & vbNewLine & vbNewLine & _
     "Have you download files form capturis portal.?" & vbNewLine & vbNewLine & _
@@ -11,7 +11,9 @@
     Case vbNo 
         MsgBox "You Have Cancelled the task.!", vbExclamation, "Electric Accrual.!"    
     End Select
-    
+  
+
+  
 # Choose file in run time
 
       MsgBox "Please choose base " & bName & " Electric Accrual.!", vbInformation 
@@ -28,6 +30,8 @@
         Exit Sub
       End If
       
+	  
+	  
 # Web Scraping login web page in internet explorer
     Sub Login_Librty()
     Dim ie As New InternetExplorer
@@ -94,7 +98,8 @@
             fltRowno = ActiveSheet.AutoFilter.Range.Offset(1).SpecialCells(xlCellTypeVisible).Row '## count first filter row number     
        End If
 
-# Create a Working Sheet
+# Create a Working Sheet and access perticular sheet
+
             If ActiveSheet.FilterMode Then ActiveSheet.AutoFilterMode = False 
             Sheets.Add After:=Worksheets("Prior Month")
             ActiveSheet.Name = "Working" '## Create a Working Sheet 
