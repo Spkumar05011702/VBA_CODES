@@ -59,12 +59,10 @@
 			Set SapGuiAuto = GetObject("SAPGUI")
 			Set sApplication = SapGuiAuto.GetScriptingEngine
 			Set Connection = sApplication.Children(0)
-			Set session = Connection.Children(0)
-	
-	
-' Bring SAP to front
+			Set session = Connection.Children(0)	
+		' Bring SAP to front
 			Set objShell = CreateObject("wscript.shell")
 			objShell.AppActivate (CStr(session.ActiveWindow.Text))
-'SAP Script Start from Hare
+		'SAP Script Start from Hare
 	
-End Sub
+	End Sub
