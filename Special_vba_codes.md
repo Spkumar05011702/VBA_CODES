@@ -83,3 +83,7 @@
                 
                 End If
             Next ws
+# Like oprerator
+    If LCase(Cells(5, i).Value) Like LCase("*" & mMonth & "") Or LCase(Cells(5, i).Value) Like LCase("*" & mmMonth & "") Then
+    
+    end if
