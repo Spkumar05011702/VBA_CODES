@@ -87,3 +87,39 @@
     If LCase(Cells(5, i).Value) Like LCase("*" & mMonth & "") Or LCase(Cells(5, i).Value) Like LCase("*" & mmMonth & "") Then
     
     end if
+# Nested if botller condition
+
+                If bCode = 4300 Then
+                bName = "BSNA"
+                
+            ElseIf bCode = 4700 Then
+                bName = "Heartland"
+                
+            ElseIf bCode = 4800 Then
+                bName = "Southwest"
+                
+            ElseIf bCode = 489 Then
+                bName = "TCL"
+                
+            ElseIf bCode = 4900 Then
+                bName = "Abarta"
+                
+            ElseIf bCode = 5200 Then
+                bName = "Liberty"
+                
+            ElseIf bCode = "" Then
+                bName = ""
+                
+            End If
+            
+            mWS.Activate
+            
+            For Each ws In Worksheets
+                
+                If ws.Name = "working" Then
+                    ws.Delete
+                End If
+                
+             Next ws
+                
+             **Sheets.Add(After:=ActiveSheet).Name = "working" ' Create working sheet**
