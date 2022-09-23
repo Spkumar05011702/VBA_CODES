@@ -29,6 +29,41 @@
         MsgBox "No Electric Accrual. Report chosen to process, Macro terminated.!", vbExclamation
         Exit Sub
       End If
+                                    
+                                    Or
+      
+      '******************************************'## open input JE file
+    
+    MsgBox "Please choose " & bCode & " BTB Accrual file.!", vbInformation, "Property Tax Journal.!"
+    
+    FileToOpen = Application.GetOpenFilename(Title:="Open " & bCode & " BTB Accrual file.!" _
+    , FileFilter:="Excel Files(*.xls*),*xls*", MultiSelect:=False)
+    
+    If FileToOpen <> False Then
+        Set tWB = Application.Workbooks.Open(FileToOpen)
+        tName = tWB.Name
+        
+        TextPostn = InStr(LCase(tName), LCase("BTB Accrual"))
+        If TextPostn <> 0 Then
+            
+            fName = Left(tName, TextPostn - 1) & " BTB Accrual " & fStamp & ".xlsx"
+            
+            tWB.SaveAs fPath & "\" & fName
+            Set jeWB = ActiveWorkbook
+            
+        Else
+            
+            MsgBox "Selected file has not key word BTB Accrual in file name, Macro terminated.!" & vbNewLine & _
+            "Please Correct the file name and run macro again.!", vbExclamation, "Property Tax Journal.!"
+            Exit Sub
+            
+        End If
+        
+    Else
+        MsgBox "No Raw file chosen to process, Macro terminated.!", vbExclamation, "Property Tax Journal.!"
+        Exit Sub
+    End If
+'******************************************'## start working on output JE file
       
 
 # Calculate filter row
