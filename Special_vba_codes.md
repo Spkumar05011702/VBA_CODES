@@ -32,7 +32,7 @@
                                     
                                     Or
       
-      '******************************************'## open input JE file
+    ##  Choose file in run time specific condition
     
     MsgBox "Please choose " & bCode & " BTB Accrual file.!", vbInformation, "Property Tax Journal.!"
     
