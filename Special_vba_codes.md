@@ -73,6 +73,11 @@
             fltRowno = ActiveSheet.AutoFilter.Range.Offset(1).SpecialCells(xlCellTypeVisible).Row '## count first filter row number     
        End If
 
+# delete filtered rows in Excel 
+
+    ActiveSheet.Range("$A$1:$I$" & lines).SpecialCells _
+        (xlCellTypeVisible).EntireRow.Delete
+
 # Create a Working Sheet and access perticular sheet
 
             If ActiveSheet.FilterMode Then ActiveSheet.AutoFilterMode = False 
@@ -124,12 +129,3 @@
                 
              **Sheets.Add(After:=ActiveSheet).Name = "working" ' Create working sheet**
 
-
-
-
-
-
-# delete filtered rows in Excel 
-
-    ActiveSheet.Range("$A$1:$I$" & lines).SpecialCells _
-        (xlCellTypeVisible).EntireRow.Delete
