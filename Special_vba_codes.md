@@ -32,7 +32,7 @@
                                     
                                     Or
       
-    ##  Choose file in run time specific condition
+#  Choose file in run time specific condition in file name
     
     MsgBox "Please choose " & bCode & " BTB Accrual file.!", vbInformation, "Property Tax Journal.!"
     
