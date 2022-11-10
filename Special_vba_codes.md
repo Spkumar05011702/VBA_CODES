@@ -96,7 +96,7 @@
     end if
 # Nested if botller condition
 
-                If bCode = 4300 Then
+            If bCode = 4300 Then
                 bName = "BSNA"
                 
             ElseIf bCode = 4700 Then
