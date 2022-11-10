@@ -70,7 +70,9 @@
     ActiveSheet.Range("$E$4:$Q$" & iLR).AutoFilter Field:=6, Criteria1:=Array("E", "Tax on Invoice"), Operator:=xlFilterValues
     fltRow = Application.WorksheetFunction.Subtotal(3, t1Ws.Range("B1:B" & Tlr))'## Count of filter row
        If fltRow > 1 Then
-            fltRowno = ActiveSheet.AutoFilter.Range.Offset(1).SpecialCells(xlCellTypeVisible).Row '## count first filter row number     
+            fltRowno = ActiveSheet.AutoFilter.Range.Offset(1).SpecialCells(xlCellTypeVisible).Row '## count first filter row number 
+            Rows("" & fltRowno & ":" & iLR & "").SpecialCells(xlCellTypeVisible).Select
+            Selection.EntireRow.Delete
        End If
 
 # Delete filtered rows in Excel 
