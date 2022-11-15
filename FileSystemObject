@@ -1,0 +1,7 @@
+#Create floder
+
+        mPath = ThisWorkbook.Path
+        If Not fso.FolderExists(mPath & "\Raw_data") Then
+        raw_path = mPath & "\Raw_data"
+        fso.CreateFolder raw_path
+        End If
