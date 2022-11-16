@@ -24,7 +24,7 @@
         Set tWb = Application.Workbooks.Open(FileToOpen)
         tWName = tWb.Name
         mSht.Range("A1").Value = tWName
-        Set tWs = tWb.Sheets("KSB1_YTD 2022"   
+        Set tWs = tWb.Sheets("KSB1_YTD 2022")  
       Else
         MsgBox "No Electric Accrual. Report chosen to process, Macro terminated.!", vbExclamation
         Exit Sub
