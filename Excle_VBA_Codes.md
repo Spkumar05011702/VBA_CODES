@@ -1,4 +1,4 @@
-# Combine Multiple Excel Files into One File :Created by Sumit Bansal from spkumar1702@gmail.com
+# 1.Combine Multiple Excel Files into One File :Created by Surendra Kumar from spkumar1702@gmail.com
 	Sub ConslidateWorkbooks()
 	Dim FolderPath As String
 	Dim Filename As String
