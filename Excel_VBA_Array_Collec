@@ -1,4 +1,3 @@
-
 # Array Basic for range read and range write in excle
 	Sub Array_test()
 		Dim arr As Variant, rg As Range
