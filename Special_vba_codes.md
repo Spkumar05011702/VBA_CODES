@@ -90,10 +90,13 @@
                 
                 End If
             Next ws
+			
 # Like oprerator
+
     If LCase(Cells(5, i).Value) Like LCase("*" & mMonth & "") Or LCase(Cells(5, i).Value) Like LCase("*" & mmMonth & "") Then
     
     end if
+	
 # Nested if botller condition
 
             If bCode = 4300 Then
@@ -130,4 +133,15 @@
              Next ws
                 
              **Sheets.Add(After:=ActiveSheet).Name = "working" ' Create working sheet**
+			
+# Specific range fill color in range
+
+	jeWB.Range(Cells(1, 1), Cells(1, columncount + 1)).Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorDark1
+        .TintAndShade = -0.249977111117893
+        .PatternTintAndShade = 0
+    End With
 
