@@ -121,18 +121,20 @@
                 bName = ""
                 
             End If
-            
-            mWS.Activate
-            
-            For Each ws In Worksheets
-                
-                If ws.Name = "working" Then
-                    ws.Delete
-                End If
-                
-             Next ws
-                
-             **Sheets.Add(After:=ActiveSheet).Name = "working" ' Create working sheet**
+# Add sheets and delete sheet
+
+        tWs.Activate
+        For Each ws In Worksheets
+        
+            If ws.Name = "working" Then
+                ws.Delete
+            End If
+        
+        Next ws
+        
+        Sheets.Add After:=ActiveSheet
+        ActiveSheet.Name = "working"
+        Set workingWS = tWb.Worksheets("working")
 			
 # Specific range fill color in range
 
