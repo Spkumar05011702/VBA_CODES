@@ -147,3 +147,9 @@
         .PatternTintAndShade = 0
     End With
 
+# Condition formating whole row specific condition in column
+	With tWs1.Range(tWs1.Cells(2, 1), tWs1.Cells(lr1 + 1, 20))
+        .FormatConditions.Add Type:=xlExpression, Formula1:="=IF($E2=""50"",1,0)"
+        .FormatConditions(1).Font.Color = RGB(255, 0, 0)
+    End With
+	
