@@ -28,4 +28,13 @@
 		Range("A1").Resize(rowcount, columncount).Value = arr
 	End Sub
 
-
+# 3. Removeing special charector from string
+	Function RemoveSpecChar(sInput As String) As String
+		Dim sSpecChar As String
+		Dim i As Long
+		sSpecChar = "\/:*?™""®<>|.&@# (_+`©~);-+=^$!,'"
+		For i = 1 To Len(sSpecChar)
+			sInput = Replace$(sInput, Mid$(sSpecChar, i, 1), "")
+		Next i
+		RemoveSpecChar = sInput
+	End Function
