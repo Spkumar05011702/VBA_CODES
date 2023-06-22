@@ -152,4 +152,8 @@
         .FormatConditions.Add Type:=xlExpression, Formula1:="=IF($E2=""50"",1,0)"
         .FormatConditions(1).Font.Color = RGB(255, 0, 0)
     End With
-	
+
+# Removing filter any table
+	With ActiveSheet.ListObjects(1)
+        	If Not .AutoFilter Is Nothing Then .AutoFilter.ShowAllData
+    	End With
