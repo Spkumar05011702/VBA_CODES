@@ -156,4 +156,4 @@
 # Removing filter any table
 	With ActiveSheet.ListObjects(1)
         	If Not .AutoFilter Is Nothing Then .AutoFilter.ShowAllData
-    	End With
+	End With
