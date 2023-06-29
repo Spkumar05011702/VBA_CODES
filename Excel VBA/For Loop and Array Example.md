@@ -1,8 +1,8 @@
 Sub excel_format(f_name, s_code, c_mnth, descript)
 	Application.DisplayAlerts = False
-	f_name = "I:\GP\3MEDICARE\Gaurav\ramesh\JRS-P2P\excels\Correction Entries for the JRS Check Deposits.xlsx"
-	s_code = "489"
-	c_mnth = "8"
+'f_name = "I:\GP\3MEDICARE\Gaurav\ramesh\JRS-P2P\excels\Correction Entries for the JRS Check Deposits.xlsx"
+'s_code = "489"
+'c_mnth = "8"
 	Dim src As Worksheet
 	Dim tar As Worksheet
 	
@@ -18,7 +18,7 @@ Sub excel_format(f_name, s_code, c_mnth, descript)
 	Selection.NumberFormat = "@"
 	
 	endrow = src.UsedRange.Row - 1 + src.UsedRange.Rows.Count
-	If Trim(src.Range("b" & CStr(endrow)) & src.Range("c" & CStr(endrow)) & src.Range("d" & CStr(endrow)) & src.Range("j" & CStr(endrow)) & src.Range("k" & CStr(endrow)) & src.Range("l" & CStr(endrow))) = "" Then
+	If Trim(src.Range("b" & CStr(endrow)) & src.Range("c" & CStr(endrow)) & src.Range("d" & CStr(endrow)) & src.Range("j" & _ CStr(endrow)) & src.Range("k" & CStr(endrow)) & src.Range("l" & CStr(endrow))) = "" Then
 		endrow = endrow - 1
 		While Trim(src.Range("b" & CStr(endrow)) & src.Range("c" & CStr(endrow)) & src.Range("d" & CStr(endrow)) & src.Range("j" & CStr(endrow)) & src.Range("k" & CStr(endrow)) & src.Range("l" & CStr(endrow))) = ""
 			endrow = endrow - 1
@@ -537,4 +537,5 @@ Sub excel_format(f_name, s_code, c_mnth, descript)
 'formatt = "ok"
 										Set c = Nothing
 									End Sub
+									
 									
