@@ -1,8 +1,8 @@
 Sub excel_format(f_name, s_code, c_mnth, descript)
 	Application.DisplayAlerts = False
-'f_name = "I:\GP\3MEDICARE\Gaurav\ramesh\JRS-P2P\excels\Correction Entries for the JRS Check Deposits.xlsx"
-'s_code = "489"
-'c_mnth = "8"
+'	f_name = "I:\GP\3MEDICARE\Gaurav\ramesh\JRS-P2P\excels\Correction Entries for the JRS Check Deposits.xlsx"
+'	s_code = "489"
+'	c_mnth = "8"
 	Dim src As Worksheet
 	Dim tar As Worksheet
 	
@@ -534,8 +534,9 @@ Sub excel_format(f_name, s_code, c_mnth, descript)
 										
 										c.Close
 '   c.Application.Quit
-'formatt = "ok"
+'   formatt = "ok"
 										Set c = Nothing
-									End Sub
+
+End Sub
 									
 									
