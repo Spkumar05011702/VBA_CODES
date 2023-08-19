@@ -38,3 +38,7 @@
 		Next i
 		RemoveSpecChar = sInput
 	End Function
+
+
+# SQL CONNECTION String 
+	DRIVER={SQL Server};Server=localhost\SQL2012;integrated security=true;Database=Company
