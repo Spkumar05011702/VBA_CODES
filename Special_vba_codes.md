@@ -30,7 +30,7 @@
         Exit Sub
       End If
                                     
-                                    Or
+                                    
       
 #  Choose file in run time specific condition in file name
     
@@ -157,3 +157,20 @@
 	With ActiveSheet.ListObjects(1)
         	If Not .AutoFilter Is Nothing Then .AutoFilter.ShowAllData
 	End With
+
+
+# Sync data from Excel to share point list
+	Sub PullData()
+		Set mysh = Sheets("query (1)")
+		If mysh.Visible = False Then
+		mysh.Visible = True
+		End If
+		mysh.Activate
+		mysh.Range("A:CZ").Delete
+		
+		Dim src(0 To 1) As Variant
+		spsite = "https://onewba.sharepoint.com/sites/BootsSP/" 'sharepoint url
+		src(0) = spsite & "/_vti_bin"
+		src(1) = "{A0260111-2EA1-4611-8CFF-8FAA7FD304DD}" ' list id from advance
+		Sheet1.ListObjects.Add xlSrcExternal, src, True, xlYes, Sheet1.Range("A1")
+	End Sub
