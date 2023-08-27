@@ -58,10 +58,9 @@
     End Sub
 
 
-# Basic Webscrping code	(Selenium-https://github.com/florentbr/SeleniumBasic/releases/tag/v2.0.9.0)
+# Basic Webscrping code	(Selenium-https://github.com/florentbr/SeleniumBasic/releases/tag/v2.0.9.0) 841219 Spkumar
 
 Private edgebrowser As Selenium.EdgeDriver
-'841219 Spkumar
 Sub TC_Browsers()
 	
 	Set edgebrowser = New Selenium.EdgeDriver
