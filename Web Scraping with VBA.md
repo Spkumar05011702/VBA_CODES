@@ -56,3 +56,74 @@
         
     End Select
     End Sub
+
+
+# Basic Webscrping code	(Selenium-https://github.com/florentbr/SeleniumBasic/releases/tag/v2.0.9.0)
+
+Private edgebrowser As Selenium.EdgeDriver
+'841219 Spkumar
+Sub TC_Browsers()
+	
+	Set edgebrowser = New Selenium.EdgeDriver
+	With Application
+		.DisplayAlerts = False
+		.ScreenUpdating = False
+	End With
+	
+	ThisWorkbook.Sheets(1).Cells.Clear
+	
+	edgebrowser.start baseUrl:="https://autometrics.in/"
+	edgebrowser.Window.Maximize
+	start:
+	edgebrowser.Get "https://autometrics.in/" 'https://autometrics.in/sndtransporterconsignments
+	
+	edgebrowser.FindElementByName("email").SendKeys "AUTO"
+	edgebrowser.FindElementByName("password").SendKeys ""
+	MyInput = InputBox("Enter your captch text here from browser", "Captcha")
+	edgebrowser.FindElementByClass("rnc-input").SendKeys "" & MyInput & ""
+	edgebrowser.FindElementById("loginButton").Click
+	edgebrowser.Wait (10000)
+	Dim val As Selenium.WebElement
+	On Error Resume Next
+	Set val = edgebrowser.FindElementByXPath("/html/body/div/div/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/div[9]")
+	If Err.Number = 7 Then
+		edgebrowser.Close
+		GoTo start	
+	End If
+	edgebrowser.Actions.ClickContext(val).Perform
+	edgebrowser.Wait (5000)
+	
+	edgebrowser.FindElementByXPath("/html/body/div/div/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div[6]/div/div/div[5]/span[2]").Click
+	edgebrowser.FindElementByXPath("/html/body/div/div/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div[7]/div/div/div[2]/span[2]").Click
+	
+	MsgBox "Please choose export file from download folder.!", vbInformation
+	FileToOpen = Application.GetOpenFilename(Title:="Open export file" _
+	, FileFilter:="Excel Files(*.xls*),*xls*", MultiSelect:=False)
+	
+	If FileToOpen <> False Then
+		edgebrowser.Close
+		Set tWb = Application.Workbooks.Open(FileToOpen)
+		Set tWs = tWb.Sheets(1)
+		tWs.Activate
+		tlr = tWs.Cells(Rows.Count, 1).End(xlUp).Row
+		tCol = tWs.Cells(1, Columns.Count).End(xlToLeft).Column
+		tWs.Range(Cells(1, 1), Cells(tlr, tCol)).Copy
+		ThisWorkbook.Sheets(1).Range("a5").PasteSpecial xlPasteValues
+		ThisWorkbook.Sheets(1).Cells.EntireColumn.AutoFit
+		tWb.Close False
+	Else
+		MsgBox "No export file from download folder chosen to process, Macro terminated.!", vbExclamation
+		
+		Exit Sub
+	End If
+	
+	
+	MsgBox "Done", vbInformation
+	
+	
+	
+'edgebrowser.Get ("https://autometrics.in/sndtransporterconsignments")
+	
+	
+End Sub
+
