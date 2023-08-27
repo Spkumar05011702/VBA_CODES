@@ -29,9 +29,7 @@
         MsgBox "No Electric Accrual. Report chosen to process, Macro terminated.!", vbExclamation
         Exit Sub
       End If
-                                    
-                                    
-      
+                                                                       
 #  Choose file in run time specific condition in file name
     
     MsgBox "Please choose " & bCode & " BTB Accrual file.!", vbInformation, "Property Tax Journal.!"
@@ -62,9 +60,7 @@
     Else
         MsgBox "No Raw file chosen to process, Macro terminated.!", vbExclamation, "Property Tax Journal.!"
         Exit Sub
-    End If
-'******************************************'## start working on output JE file
-      
+    End If      
 
 # Calculate filter row
     ActiveSheet.Range("$E$4:$Q$" & iLR).AutoFilter Field:=6, Criteria1:=Array("E", "Tax on Invoice"), Operator:=xlFilterValues
@@ -154,12 +150,14 @@
     End With
 
 # Removing filter any table
+
 	With ActiveSheet.ListObjects(1)
         	If Not .AutoFilter Is Nothing Then .AutoFilter.ShowAllData
 	End With
 
 
 # Sync data from Excel to share point list
+
 	Sub PullData()
 		Set mysh = Sheets("query (1)")
 		If mysh.Visible = False Then
@@ -174,3 +172,48 @@
 		src(1) = "{A0260111-2EA1-4611-8CFF-8FAA7FD304DD}" ' list id from advance
 		Sheet1.ListObjects.Add xlSrcExternal, src, True, xlYes, Sheet1.Range("A1")
 	End Sub
+	
+# Combine Multiple Excel Files into One File :Created by Surendra Kumar from spkumar1702@gmail.com
+	Sub ConslidateWorkbooks()
+	Dim FolderPath As String
+	Dim Filename As String
+	Dim Sheet As Worksheet
+	Application.ScreenUpdating = False
+	FolderPath = Environ("userprofile") & "DesktopTest"
+	Filename = Dir(FolderPath & "*.xls*")
+	Do While Filename <> ""
+		Workbooks.Open Filename:=FolderPath & Filename, ReadOnly:=True
+		For Each Sheet In ActiveWorkbook.Sheets
+			Sheet.Copy After:=ThisWorkbook.Sheets(1)
+			Next Sheet
+			Workbooks(Filename).Close
+			Filename = Dir()
+		Loop
+		Application.ScreenUpdating = True
+	End Sub
+
+# Basic vba program how to read/write range 
+	Sub Array_test()
+		Dim arr As Variant, rg As Range
+		Set rg = tSht.Range("a5").CurrentRegion
+		arr = rg.Value 'or arr=tSht.Range("a5").CurrentRegion.value
+		Dim rowcount As Long, columncount As Long
+		rowcount = UBound(arr, 1)
+		columncount = UBound(arr, 2)
+		Range("A1").Resize(rowcount, columncount).Value = arr
+	End Sub
+
+# Removeing special charector from string
+	Function RemoveSpecChar(sInput As String) As String
+		Dim sSpecChar As String
+		Dim i As Long
+		sSpecChar = "\/:*?™""®<>|.&@# (_+`©~);-+=^$!,'"
+		For i = 1 To Len(sSpecChar)
+			sInput = Replace$(sInput, Mid$(sSpecChar, i, 1), "")
+		Next i
+		RemoveSpecChar = sInput
+	End Function
+
+
+# SQL CONNECTION String 
+	DRIVER={SQL Server};Server=localhost\SQL2012;integrated security=true;Database=Company
