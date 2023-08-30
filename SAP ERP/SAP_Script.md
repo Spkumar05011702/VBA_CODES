@@ -264,3 +264,305 @@
 		        session.findById("wnd[1]/tbar[0]/btn[0]").press
 		        'session.findById("wnd[0]/tbar[0]/btn[3]").press
    	End Sub
+
+
+# T- Code:-me23n(extract data)
+
+		Sub sap_log_script(ByVal po As String, ByVal itm As String, ByVal j As Integer, ByVal a As Integer)
+			
+			
+			Set WWS = ThisWorkbook.Worksheets("Working")
+			WWS.Visible = True
+			WWS.Cells.Clear
+			
+			On Error Resume Next
+			Set SapGuiAuto = GetObject("SAPGUISERVER")
+			Set SapApplication = SapGuiAuto.GetScriptingEngine
+			Set SapConnection = SapApplication.Children(0)
+			On Error GoTo 0
+			
+			If IsObject(SapConnection) = False Then
+				MsgBox "Unable to establish a connection with SAP. Please try again!"
+				Exit Sub
+			End If
+			
+			If Not IsObject(session) Then
+				Set session = SapConnection.Children(0)
+			End If
+			
+			If IsObject(WScript) Then
+				WScript.ConnectObject session, "on"
+				WScript.ConnectObject SapApplication, "on"
+			End If
+			
+			
+			
+			session.findById("wnd[0]/tbar[0]/okcd").Text = "/nme23n"
+			session.findById("wnd[0]").sendVKey 0
+			session.findById("wnd[0]/tbar[1]/btn[17]").press
+			session.findById("wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN").Text = po '"4512090088"
+			session.findById("wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN").caretPosition = 10
+			session.findById("wnd[1]/tbar[0]/btn[0]").press
+			
+			session.findById("wnd[0]").sendVKey 27
+		'Application.Wait (Now() + TimeValue("00:00:10"))
+		'On Error Resume Next
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211").Columns.elementAt(1).Selected = True
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/btnEDITFILTER").press
+			session.findById("wnd[1]/usr/ssub%_SUBSCREEN_FREESEL:SAPLSSEL:1105/ctxt%%DYN001-LOW").Text = itm '"20"
+			session.findById("wnd[1]/usr/ssub%_SUBSCREEN_FREESEL:SAPLSSEL:1105/ctxt%%DYN001-LOW").caretPosition = 2
+			session.findById("wnd[1]").sendVKey 0
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/cmbDYN_6000-LIST").SetFocus
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/cmbDYN_6000-LIST").Key = "   1"
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/cmbDYN_6000-LIST").SetFocus
+			
+			
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211").verticalScrollbar.Position = 1
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211").verticalScrollbar.Position = 1
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17").Select
+			
+			
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").currentCellRow = -1
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").selectColumn "BEWTK"
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").pressToolbarButton "&MB_FILTER"
+			session.findById("wnd[1]/usr/ssub%_SUBSCREEN_FREESEL:SAPLSSEL:1105/ctxt%%DYN001-LOW").Text = "RE-L"
+			session.findById("wnd[1]/usr/ssub%_SUBSCREEN_FREESEL:SAPLSSEL:1105/ctxt%%DYN001-LOW").caretPosition = 4
+			session.findById("wnd[1]/tbar[0]/btn[0]").press
+			
+			
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").currentCellColumn = "BELNR"
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").selectedRows = "0"
+			session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT17/ssubTABSTRIPCONTROL1SUB:SAPLMEVIEWS:1106/subSUB2:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell").clickCurrentCell
+			
+			Invoice_date = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT").Text 'setFocus
+			Reference = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-XBLNR").Text 'SetFocus
+			
+			Company_Code = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-BUTXT").Text 'SetFocus
+			
+			Dim Code() As String
+			Code = Split(Company_Code, " ")
+			Company_Code = Code(0)
+			
+			txt = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-SGTXT").Text 'SetFocus
+			
+			amt = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR").Text 'setFocus
+			
+			ThisWorkbook.Sheets("PO Template").Range("c" & a).Value = Invoice_date
+			ThisWorkbook.Sheets("PO Template").Range("d" & a).Value = Reference
+			ThisWorkbook.Sheets("PO Template").Range("e" & a).Value = Company_Code
+			ThisWorkbook.Sheets("PO Template").Range("f" & a).Value = txt
+			ThisWorkbook.Sheets("PO Template").Range("g" & a).Value = amt
+			
+		'Call sap_log_script_miro(po, itm, Invoice_date, Reference, Company_Code, txt, amt)
+		End Sub
+# T-Code:-miro ( Fill all line item)
+		Sub sap_log_script_miro(ByVal po As String, ByVal Invoice_date As String, ByVal Reference As String, ByVal Company_Code As String, ByVal txt As String, ByVal lp_int As Integer)
+			
+			
+			Set WWS = ThisWorkbook.Worksheets("Working")
+			WWS.Visible = True
+		'WWS.Cells.Clear
+			
+			On Error Resume Next
+			Set SapGuiAuto = GetObject("SAPGUISERVER")
+			Set SapApplication = SapGuiAuto.GetScriptingEngine
+			Set SapConnection = SapApplication.Children(0)
+			On Error GoTo 0
+			
+			If IsObject(SapConnection) = False Then
+				MsgBox "Unable to establish a connection with SAP. Please try again!"
+				Exit Sub
+			End If
+			
+			If Not IsObject(session) Then
+				Set session = SapConnection.Children(0)
+			End If
+			
+			If IsObject(WScript) Then
+				WScript.ConnectObject session, "on"
+				WScript.ConnectObject SapApplication, "on"
+			End If
+			
+			
+			session.findById("wnd[0]/tbar[0]/okcd").Text = "/nmiro"
+			session.findById("wnd[0]").sendVKey 0
+			On Error Resume Next
+			session.findById("wnd[1]/usr/ctxtBKPF-BUKRS").Text = Company_Code '"5001"
+			session.findById("wnd[1]/usr/ctxtBKPF-BUKRS").caretPosition = 4
+			session.findById("wnd[1]/tbar[0]/btn[0]").press
+			
+			
+		'session.findById("wnd[0]").resizeWorkingPane 132, 12, False
+			session.findById("wnd[0]/tbar[0]/okcd").Text = "/nmiro"
+			session.findById("wnd[0]").sendVKey 0
+			session.findById("wnd[0]/usr/cmbRM08M-VORGANG").Key = "2"
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT").SetFocus
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT").caretPosition = 0
+			session.findById("wnd[0]/mbar/menu[1]/menu[0]").Select
+			session.findById("wnd[1]/usr/ctxtBKPF-BUKRS").Text = Company_Code '"5001"
+			session.findById("wnd[1]/usr/ctxtBKPF-BUKRS").caretPosition = 4
+			session.findById("wnd[1]/tbar[0]/btn[0]").press
+			session.findById("wnd[0]/usr/cmbRM08M-VORGANG").SetFocus
+			
+			
+			
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT").Text = Invoice_date ' "04/27/2022"
+			session.findById("wnd[0]").sendVKey 0
+		'Application.Wait (Now() + TimeValue("00:00:10"))
+			session.findById("wnd[0]").sendVKey 0
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-XBLNR").Text = Reference '"TCPS211378"
+			session.findById("wnd[0]").sendVKey 0
+			
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-SGTXT").Text = txt & "K1" '"TCPS211378K1"
+			
+			iLr = ThisWorkbook.Sheets("PO Template").Cells(Rows.Count, 11).End(xlUp).Row
+			lp = iLr Mod 10
+			Fd = Application.WorksheetFunction.Floor(iLr, 10) / 10
+			temp = 1
+			Scroll = 0
+			session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subREFERENZBELEG:SAPLMR1M:6211/btnRM08M-XMSEL").press
+			i = 0
+			For i = 0 To Fd
+				
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,0]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value ' "4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,0]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value '"20"
+				
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,1]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,1]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value '"40"
+				
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,2]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value ' "4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,2]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value '"50"
+				
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,3]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,3]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value '"140"
+				
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,4]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,4]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value ' "150"
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,5]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,5]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value '"190"
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,6]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,6]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value ' "200"
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,7]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,7]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value ' "250"
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,8]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value '"4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,8]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value ' "260"
+				temp = temp + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/ctxtRM08M-EBELN[0,9]").Text = ThisWorkbook.Sheets("PO Template").Range("k" & temp).Value ' "4513853752"
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,9]").Text = ThisWorkbook.Sheets("PO Template").Range("l" & temp).Value ' "270"
+		'session.findById("wnd[0]").sendVKey 82
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,10]").SetFocus
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST/txtRM08M-EBELP[1,10]").caretPosition = 0
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll '1
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '2
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '3
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '4
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll '5
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '6
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '7
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '8
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '9
+				Scroll = Scroll + 1
+				session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = Scroll  '10
+		'If i >= 0 Then session.findById("wnd[1]/usr/subMSEL:SAPLMR1M:6221/tblSAPLMR1MTC_MSEL_BEST").verticalScrollbar.Position = temp '1
+				
+				Next i
+				
+				session.findById("wnd[1]/tbar[0]/btn[8]").press
+				
+		'session.findById("wnd[0]").sendVKey 0
+		'session.findById("wnd[0]").sendVKey 0
+				
+				session.findById("wnd[0]/usr/btnRM08M-HEADER_COLLAPSE").press
+				session.findById("wnd[0]").sendVKey 0
+				session.findById("wnd[0]").sendVKey 0
+				k = 0
+				temp = 0
+				lr_S = lp_int
+				For k = 0 To iLr
+					session.findById("wnd[0]").sendVKey 0
+					session.findById("wnd[0]").sendVKey 0
+					Received = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-WEMNG[38," & temp & "]").Text 'SetFocus
+					Settled = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-REMNG[39," & temp & "]").Text 'SetFocus
+					Final_Q = Int(Settled) - Int(Received)
+					Amount_1 = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-WRBTR[35," & temp & "]").Text 'SetFocus
+					If Amount_1 = "" Then Amount_1 = 0
+					Final_Amount = (CDec(Amount_1) / Settled) * Final_Q
+					ThisWorkbook.Sheets("PO Template").Activate
+					
+					itm = session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-EBELP[31," & temp & "]").Text 'setFocus
+					session.findById("wnd[0]").sendVKey 0
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-WRBTR[35," & temp & "]").Text = "" & Format(Final_Amount, "0.00") & "" '"24"
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6006/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subITEM:SAPLMR1M:6310/tblSAPLMR1MTC_MR1M/txtDRSEG-MENGE[33," & temp & "]").Text = "" & Final_Q & "" '"2"
+					temp = temp + 1
+					If (k + 1) Mod 6 = 0 Then
+						session.findById("wnd[0]").sendVKey 82
+						temp = 0
+					End If
+					Next k
+					
+					balance = session.findById("wnd[0]/usr/txtRM08M-DIFFERENZ").Text 'setFocus
+					
+					If Int(balance) = 0 Then
+						ThisWorkbook.Sheets("PO Template").Range("H" & lr_S).Value = "This po already processed."
+						Exit Sub
+					End If
+					
+					session.findById("wnd[0]/usr/btnRM08M-HEADER_COLLAPSE").press
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR").Text = Left(balance, Len(balance) - 1) '"123"
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR").SetFocus
+		'session.findById("wnd[0]").sendVKey 0
+		'session.findById("wnd[0]").sendVKey 0
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR").caretPosition = 3
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_FI").Select
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_FI/ssubHEADER_SCREEN:SAPLFDCB:0150/cmbINVFO-BLART").Key = "K1"
+					session.findById("wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_FI/ssubHEADER_SCREEN:SAPLFDCB:0150/cmbINVFO-BLART").SetFocus
+					check_bal = session.findById("wnd[0]/usr/txtRM08M-DIFFERENZ").Text 'setFocus
+					If Int(check_bal) <> 0 Then
+						ThisWorkbook.Sheets("PO Template").Range("H" & lr_S).Value = "Getting Error:- balance is not able to 0 "
+						Exit Sub
+					End If
+					
+					session.findById("wnd[0]/tbar[1]/btn[43]").press
+					session.findById("wnd[1]").Close
+					
+					session.findById("wnd[0]/tbar[1]/btn[13]").press
+					error_m = session.findById("wnd[1]/tbar[0]/btn[17]").Text 'press
+					session.findById("wnd[1]/tbar[0]/btn[12]").press
+					If Int(error_m) > 0 Then
+		'ThisWorkbook.Sheets("Status").Range("A" & lr_S + 1).Value = po  'grengauh     Lawson@@@02
+						session.findById("wnd[1]").Close
+						ThisWorkbook.Sheets("PO Template").Range("H" & lr_S).Value = "Getting Error- " & error_m & " "
+						Exit Sub
+					Else
+						session.findById("wnd[1]").Close
+						session.findById("wnd[0]").sendVKey 11
+						ThisWorkbook.Sheets("PO Template").Range("H" & lr_S).Value = "Processed...."
+					End If
+					
+					
+		End Sub
+				
+		
+		
+		
+
+
