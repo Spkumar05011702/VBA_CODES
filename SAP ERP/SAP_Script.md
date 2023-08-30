@@ -221,5 +221,46 @@
 				ActiveWorkbook.Close False	
 	End Sub
 	
-
-
+# AR - PD - T-Code
+	sub sap_S_ALR_87012178()
+			Set SapGuiAuto = GetObject("SAPGUI")
+			Set sApplication = SapGuiAuto.GetScriptingEngine
+			Set Connection = sApplication.Children(0)
+			Set session = Connection.Children(0)
+			' Bring SAP to front
+			Set objShell = CreateObject("wscript.shell")
+			objShell.AppActivate (CStr(session.ActiveWindow.Text))	
+		  	session.findById("wnd[0]/tbar[0]/okcd").Text = "/nS_ALR_87012178"
+		        session.findById("wnd[0]").sendVKey 0
+		        session.findById("wnd[0]/usr/ctxtDD_BUKRS-LOW").Text = "c100"
+		        session.findById("wnd[0]/usr/ctxtDD_STIDA").Text = Format(Posting_FromDate, "dd.mm.yyyy") '"24.05.2023"
+		        session.findById("wnd[0]/usr/txtMONAT").Text = "16"
+		        session.findById("wnd[0]/usr/ctxtAKONTS-HIGH").SetFocus
+		        session.findById("wnd[0]/usr/ctxtAKONTS-HIGH").caretPosition = 0
+		        session.findById("wnd[0]/usr/btn%_AKONTS_%_APP_%-VALU_PUSH").press
+		        session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL-SLOW_I[1,0]").Text = "510050"
+		        session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL-SLOW_I[1,1]").Text = "510000"
+		        session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL-SLOW_I[1,2]").Text = "513100"
+		        'session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL-SLOW_I[1,2]").SetFocus
+		        'session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL-SLOW_I[1,2]").caretPosition = 6
+		        session.findById("wnd[1]/tbar[0]/btn[8]").press
+		        session.findById("wnd[0]/usr/txtVERDICHT").Text = "6"
+		        session.findById("wnd[0]/usr/ctxtXBUKRDAT").Text = "2"
+		        session.findById("wnd[0]/usr/txtRASTBIS2").Text = "30"
+		        session.findById("wnd[0]/usr/txtRASTBIS3").Text = "60"
+		        session.findById("wnd[0]/usr/txtRASTBIS4").Text = "90"
+		        session.findById("wnd[0]/usr/txtRASTBIS5").Text = "120"
+		        session.findById("wnd[0]/usr/txtRASTBIS5").SetFocus
+		        session.findById("wnd[0]/usr/txtRASTBIS5").caretPosition = 0
+		        session.findById("wnd[0]/tbar[1]/btn[8]").press
+		        session.findById("wnd[0]/mbar/menu[0]/menu[1]/menu[2]").Select
+		        session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").Select
+		        session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").SetFocus
+		        session.findById("wnd[1]/tbar[0]/btn[0]").press
+		        session.findById("wnd[1]/usr/ctxtDY_PATH").Text = ThisWorkbook.Path & "\" '"C:\Users\nchennapay\Downloads\AR\"
+		        session.findById("wnd[1]/usr/ctxtDY_FILENAME").Text = "" & i & "_AR & PD " & Format(Date, "dd.mm.yyyy") & ".XLS"
+		        session.findById("wnd[1]/usr/ctxtDY_PATH").SetFocus
+		        session.findById("wnd[1]/usr/ctxtDY_PATH").caretPosition = 33
+		        session.findById("wnd[1]/tbar[0]/btn[0]").press
+		        'session.findById("wnd[0]/tbar[0]/btn[3]").press
+   	end sub
