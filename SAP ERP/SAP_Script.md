@@ -163,4 +163,69 @@
 		session.findById("wnd[1]/tbar[0]/btn[11]").press	
 	End Sub
 
+# T-Code- NFBL5N -file download
+Sub SAP_PRO()
+	
+	Dim mPath As String, tLR As Double
+	
+	Set mWS = ThisWorkbook.Worksheets("macro_sheet")
+	bCode = mWS.Range("$E$6").Value
+	Posting_FromDate = mWS.Range("$E$7").Value
+	Posting_ToDate = mWS.Range("$E$8").Value	
+	mPath = ThisWorkbook.Path
+	Dim SapGuiAuto As Object
+	Dim sApplication As Object
+	Dim Connection As Object
+	Dim session As Object	
+	Set SapGuiAuto = GetObject("SAPGUI")
+	Set sApplication = SapGuiAuto.GetScriptingEngine
+	Set Connection = sApplication.Children(0)
+	Set session = Connection.Children(0)
+	' Bring SAP to front	
+	Set objShell = CreateObject("wscript.shell")
+	objShell.AppActivate (CStr(session.ActiveWindow.Text))
+	'SAP Script Start from Hare
+	session.findById("wnd[0]/tbar[0]/okcd").Text = "/NFBL5N"
+	session.findById("wnd[0]").sendVKey 0
+	session.findById("wnd[0]/usr/chkX_SHBV").Selected = False
+	session.findById("wnd[0]/usr/chkX_NORM").Selected = True
+	session.findById("wnd[0]/usr/ctxtDD_KUNNR-LOW").Text = ""
+	session.findById("wnd[0]/usr/ctxtDD_BUKRS-LOW").Text = "c100"
+	session.findById("wnd[0]/usr/ctxtPA_STIDA").Text = Format(Posting_FromDate, "dd.mm.yyyy") '"07.06.2023"
+	session.findById("wnd[0]/usr/ctxtPA_VARI").Text = "/GL & ARREAR"
+	session.findById("wnd[0]/usr/ctxtPA_VARI").SetFocus
+	session.findById("wnd[0]/usr/ctxtPA_VARI").caretPosition = 12
+	session.findById("wnd[0]/tbar[1]/btn[8]").press
+	session.findById("wnd[0]/mbar/menu[0]/menu[3]/menu[1]").Select
+	session.findById("wnd[1]/usr/radRB_OTHERS").SetFocus
+	session.findById("wnd[1]/usr/radRB_OTHERS").Select
+	session.findById("wnd[1]/usr/cmbG_LISTBOX").Key = "08"
+	session.findById("wnd[1]/tbar[0]/btn[0]").press
+	session.findById("wnd[1]/tbar[0]/btn[0]").press
+	session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[0,0]").Select
+	session.findById("wnd[1]/tbar[0]/btn[0]").press
+	session.findById("wnd[1]/tbar[0]/btn[0]").press
+	'session.findById("wnd[1]/tbar[0]/btn[0]").press
+	
+	
+	For Each wn In Application.Windows
+		On Error Resume Next
+		fName = 0
+		fName = Application.WorksheetFunction.IfError(Application.WorksheetFunction.Find("Worksheet in ALVXXL01 (1)", _ 
+                            wn.Caption), 0)
+		On Error GoTo 0
+		If fName > 0 Then
+			Workbooks(wn.Caption).Activate
+			ActiveWindow.WindowState = xlMaximized
+			'Application.Wait (Now() + TimeValue("00:05:00"))
+			ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\Raw_Data_Credit Limit Report - BI.xlsx"	
+		End If
+		Next wn
+		
+		session.findById("wnd[1]/tbar[0]/btn[0]").press
+		Workbooks("Worksheet in ALVXXL01 (1)").Activate
+		ActiveWorkbook.Close False
+End Sub
+	
+
 
