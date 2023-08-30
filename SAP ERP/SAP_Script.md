@@ -136,39 +136,38 @@
 		'and there goes your code in SAP
 
 	End Sub
-
 # T-Code -S_ALR_87009994- Credit Limit 
 
-Sub credit_limit_Sap()
-
-	Dim mPath As String, tLR As Double
-	Set mWS = ThisWorkbook.Worksheets("macro_sheet")
+	Sub credit_limit_Sap()
 	
-	Set SapGuiAuto = GetObject("SAPGUI")
-	Set sApplication = SapGuiAuto.GetScriptingEngine
-	Set Connection = sApplication.Children(0)
-	Set session = Connection.Children(0)
-' Bring SAP to front
-	
-	Set objShell = CreateObject("wscript.shell")
-	objShell.AppActivate (CStr(session.ActiveWindow.Text))
-	
-	session.findById("wnd[0]/tbar[0]/okcd").Text = "/NS_ALR_87009994"
-	session.findById("wnd[0]").sendVKey 0
-	session.findById("wnd[0]/usr/ctxtKKBER-LOW").Text = "C100"
-	session.findById("wnd[0]/usr/ctxtKKBER-LOW").SetFocus
-	session.findById("wnd[0]/usr/ctxtKKBER-LOW").caretPosition = 4
-	session.findById("wnd[0]/tbar[1]/btn[8]").press
-	session.findById("wnd[0]/mbar/menu[0]/menu[1]/menu[2]").Select
-	session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").Select
-	session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").SetFocus
-	session.findById("wnd[1]/tbar[0]/btn[0]").press
-	session.findById("wnd[1]/usr/ctxtDY_PATH").Text = ThisWorkbook.Path & "\" '"C:\Users\nchennapay\Downloads\New folder\"
-	session.findById("wnd[1]/usr/ctxtDY_FILENAME").Text = "Credit_Limit.XLS"
-	session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 16
-	session.findById("wnd[1]/tbar[0]/btn[11]").press
-	
-	
-End Sub
+		Dim mPath As String, tLR As Double
+		Set mWS = ThisWorkbook.Worksheets("macro_sheet")
+		
+		Set SapGuiAuto = GetObject("SAPGUI")
+		Set sApplication = SapGuiAuto.GetScriptingEngine
+		Set Connection = sApplication.Children(0)
+		Set session = Connection.Children(0)
+	' Bring SAP to front
+		
+		Set objShell = CreateObject("wscript.shell")
+		objShell.AppActivate (CStr(session.ActiveWindow.Text))
+		
+		session.findById("wnd[0]/tbar[0]/okcd").Text = "/NS_ALR_87009994"
+		session.findById("wnd[0]").sendVKey 0
+		session.findById("wnd[0]/usr/ctxtKKBER-LOW").Text = "C100"
+		session.findById("wnd[0]/usr/ctxtKKBER-LOW").SetFocus
+		session.findById("wnd[0]/usr/ctxtKKBER-LOW").caretPosition = 4
+		session.findById("wnd[0]/tbar[1]/btn[8]").press
+		session.findById("wnd[0]/mbar/menu[0]/menu[1]/menu[2]").Select
+		session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").Select
+		session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]").SetFocus
+		session.findById("wnd[1]/tbar[0]/btn[0]").press
+		session.findById("wnd[1]/usr/ctxtDY_PATH").Text = ThisWorkbook.Path & "\" '"C:\Users\nchennapay\Downloads\New folder\"
+		session.findById("wnd[1]/usr/ctxtDY_FILENAME").Text = "Credit_Limit.XLS"
+		session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 16
+		session.findById("wnd[1]/tbar[0]/btn[11]").press
+		
+		
+	End Sub
 
 
