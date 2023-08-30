@@ -1,8 +1,6 @@
 # SAP Procedger 
 	Sub SAP_PRO()
-	
 			Dim mPath As String, tLR As Double
-
 			Set mWS = ThisWorkbook.Worksheets("macro_sheet")
 			bCode = mWS.Range("$E$6").Value
 			Posting_FromDate = mWS.Range("$E$7").Value
@@ -164,10 +162,8 @@
 	End Sub
 
 # T-Code- NFBL5N -file download
-Sub SAP_PRO()
-	
-	Dim mPath As String, tLR As Double
-	
+Sub SAP_NFBL5N()	
+	Dim mPath As String, tLR As Double	
 	Set mWS = ThisWorkbook.Worksheets("macro_sheet")
 	bCode = mWS.Range("$E$6").Value
 	Posting_FromDate = mWS.Range("$E$7").Value
@@ -205,9 +201,7 @@ Sub SAP_PRO()
 	session.findById("wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[0,0]").Select
 	session.findById("wnd[1]/tbar[0]/btn[0]").press
 	session.findById("wnd[1]/tbar[0]/btn[0]").press
-	'session.findById("wnd[1]/tbar[0]/btn[0]").press
-	
-	
+	'session.findById("wnd[1]/tbar[0]/btn[0]").press	
 	For Each wn In Application.Windows
 		On Error Resume Next
 		fName = 0
@@ -220,12 +214,11 @@ Sub SAP_PRO()
 			'Application.Wait (Now() + TimeValue("00:05:00"))
 			ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\Raw_Data_Credit Limit Report - BI.xlsx"	
 		End If
-		Next wn
-		
+		Next wn	
 		session.findById("wnd[1]/tbar[0]/btn[0]").press
 		Workbooks("Worksheet in ALVXXL01 (1)").Activate
 		ActiveWorkbook.Close False
-End Sub
+  End Sub
 	
 
 
