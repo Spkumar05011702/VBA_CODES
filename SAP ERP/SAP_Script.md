@@ -263,4 +263,4 @@
 		        session.findById("wnd[1]/usr/ctxtDY_PATH").caretPosition = 33
 		        session.findById("wnd[1]/tbar[0]/btn[0]").press
 		        'session.findById("wnd[0]/tbar[0]/btn[3]").press
-   	end sub
+   	End Sub
