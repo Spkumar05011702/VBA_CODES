@@ -221,7 +221,7 @@
 				ActiveWorkbook.Close False	
 	End Sub
 	
-# AR - PD - T-Code
+# AR - PD - T-Code - nS_ALR_87012178
 	sub sap_S_ALR_87012178()
 			Set SapGuiAuto = GetObject("SAPGUI")
 			Set sApplication = SapGuiAuto.GetScriptingEngine
