@@ -135,6 +135,7 @@
 
 	End Sub
 # T-Code -S_ALR_87009994- Credit Limit 
+
 	Sub credit_limit_Sap()
 		Dim mPath As String, tLR As Double
 		Set mWS = ThisWorkbook.Worksheets("macro_sheet")
@@ -162,7 +163,8 @@
 	End Sub
 
 # T-Code- NFBL5N -file download
-Sub SAP_NFBL5N()	
+
+Sub SAP_NFBL5N()
 	Dim mPath As String, tLR As Double	
 	Set mWS = ThisWorkbook.Worksheets("macro_sheet")
 	bCode = mWS.Range("$E$6").Value
@@ -205,8 +207,7 @@ Sub SAP_NFBL5N()
 	For Each wn In Application.Windows
 		On Error Resume Next
 		fName = 0
-		fName = Application.WorksheetFunction.IfError(Application.WorksheetFunction.Find("Worksheet in ALVXXL01 (1)", _ 
-                            wn.Caption), 0)
+		fName = Application.WorksheetFunction.IfError(Application.WorksheetFunction.Find("Worksheet in ALVXXL01 (1)", wn.Caption), 0)
 		On Error GoTo 0
 		If fName > 0 Then
 			Workbooks(wn.Caption).Activate
@@ -214,11 +215,11 @@ Sub SAP_NFBL5N()
 			'Application.Wait (Now() + TimeValue("00:05:00"))
 			ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\Raw_Data_Credit Limit Report - BI.xlsx"	
 		End If
-		Next wn	
+	Next wn	
 		session.findById("wnd[1]/tbar[0]/btn[0]").press
 		Workbooks("Worksheet in ALVXXL01 (1)").Activate
-		ActiveWorkbook.Close False
-  End Sub
+		ActiveWorkbook.Close False	
+End Sub
 	
 
 
