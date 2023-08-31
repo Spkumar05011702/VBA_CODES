@@ -1,4 +1,4 @@
-# mail body with table
+# Mail Body with Table
   	Sub CreateEmailWithFormattedTableAndSignature()
         	Dim OutApp As Object
         	Dim OutMail As Object
