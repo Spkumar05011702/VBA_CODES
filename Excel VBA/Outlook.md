@@ -1,19 +1,19 @@
 # mail body with table
-  Sub CreateEmailWithFormattedTableAndSignature()
+  	Sub CreateEmailWithFormattedTableAndSignature()
         	Dim OutApp As Object
         	Dim OutMail As Object
         	Dim MailBody As String
         	Dim DataRange As Range
         	Dim RowIndex As Long
         	
-        ' Set the range containing your data
+        	' Set the range containing your data
         	Set DataRange = ThisWorkbook.Sheets("Sheet1").Range("A2:D" & ThisWorkbook.Sheets("Sheet1").Range("A" & Rows.Count).End(xlUp).Row) ' Adjust the range as needed
         	
-        ' Initialize Outlook
+        	' Initialize Outlook
         	Set OutApp = CreateObject("Outlook.Application")
         	Set OutMail = OutApp.CreateItem(0)
         	
-        ' Build the email body using data from the range
+        	' Build the email body using data from the range
         	MailBody = "<html><body>" & _
         	"<p>Hello,</p>" & _
         	"<p>We have multiple discrepancies with data relating to CARD and AMEX takings, please see the below.</p>" & _
@@ -70,7 +70,7 @@
         		"Store Colleagues -<font color='blue'> Stores How To's</font></p>" & _
         		"</body></html>"
         		
-        ' Configure the email properties
+        	' Configure the email properties
         		With OutMail
         			.To = "recipient@example.com"
         			.Subject = "Discrepancies in CARD and AMEX Takings"
@@ -78,7 +78,7 @@
         			.Display ' Use .Send to send directly without displaying the email
         		End With
         		
-        ' Clean up objects
+        	' Clean up objects
         		Set OutMail = Nothing
         		Set OutApp = Nothing
 	End Sub
