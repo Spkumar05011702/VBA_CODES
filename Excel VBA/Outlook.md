@@ -18,7 +18,7 @@
         	"<p>Hello,</p>" & _
         	"<p>We have multiple discrepancies with data relating to CARD and AMEX takings, please see the below.</p>" & _
         	"<p><b>Discrepancies are as follow: </b></p>" & _
-        	"<table border='1' style='border-collapse: collapse;'>" & _
+        	"<table border='1' style='border-collapse: collapse;width: 50%; text-align: center;padding:2px''>" & _
         	"<tr style='font-weight: bold;'>" & _
         	"<td>Card Name</td>" & _
         	"<td>Amount</td>" & _
